@@ -85,6 +85,7 @@ selected_genre = st.sidebar.selectbox(
 
 # LANGUAGE
 language_map = {
+    'Any Language':'Any Language',
     "en": "English",
     "hi": "Hindi",
     "fr": "French",
@@ -102,7 +103,7 @@ language_map = {
     "nl": "Dutch",
     "fa": "Persian"
 }
-language_map.insert(0,'Any Language')
+
 
 selected_language = st.sidebar.selectbox(
     "🌍 Language",
@@ -144,54 +145,13 @@ with st.sidebar.expander("⚡ Advanced Features"):
     )
 
 # ---------------- RECOMMEND FUNCTION ----------------
-def recommend_movies():
-
-    filtered = movies.copy()
-
-    # Genre filter
-    filtered = filtered[
-        filtered['genres'].apply(
-            lambda x: selected_genre in x
-        )
-    ]
-
-    # Actor filter
-    if selected_actor != "Any Actor":
-
-        filtered = filtered[
-            filtered['cast'].apply(
-                lambda x: selected_actor in x
-            )
-        ]
-
-    # Director filter
-    if selected_director != "Any Director":
-
-        filtered = filtered[
-            filtered['crew'].apply(
-                lambda x: selected_director in x
-            )
-        ]
-
-    # Language filter
-    lang_code = language_map[selected_language]
-
-    lang_filtered = filtered[
-        filtered['original_language'] == lang_code
-    ]
-
-    # fallback
-    if len(lang_filtered) > 0:
-        filtered = lang_filtered
-
-    # ranking
-    filtered = filtered.sort_values(
-        by=['popularity', 'vote_average'],
-        ascending=False
-    )
-
-    return filtered.head(12)
-
+results = hybrid_recommend(All_movies, similarity, cv, vectors,
+                     genre="Any Genre",
+                     actor="Any Actor",
+                     language="Any Language",
+                     director="Any Director",
+                     movie=None,
+                     top_n=10):
 # ---------------- BUTTON ----------------
 if st.button("✨ Recommend Movies"):
 

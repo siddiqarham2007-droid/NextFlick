@@ -1,7 +1,8 @@
 import streamlit as st
 import pickle
 import pandas as pd
-
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="NextFlick 🎬",

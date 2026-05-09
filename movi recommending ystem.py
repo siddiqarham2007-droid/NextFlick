@@ -53,9 +53,9 @@ def load_data():
 
     similarity = cosine_similarity(vectors)
 
-    return movies, similarity
+    return All_movies, similarity
 
-movies, similarity = load_data()
+All_movies, similarity = load_data()
 
 # ---------------- TITLE ----------------
 st.title("🍿 NextFlick")

@@ -48,7 +48,7 @@ section[data-testid="stSidebar"] {
 @st.cache_resource
 def load_data():
 
-    movies = pickle.load(open("movies.pkl", "rb"))
+    All_movies = pickle.load(open("movies.pkl", "rb"))
     vectors = pickle.load(open("vectors2.pkl", "rb"))
 
     similarity = cosine_similarity(vectors)

@@ -5,7 +5,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
-    page_title="NextFlick 🎬",
+    page_title="Mood2Movie🎬",
     page_icon="🍿",
     layout="wide"
 )
@@ -58,7 +58,7 @@ def load_data():
 All_movies, similarity = load_data()
 
 # ---------------- TITLE ----------------
-st.title("🍿 NextFlick")
+st.title("🍿 Mood2Movie")
 st.markdown("### What's on your mind today? 🎬")
 
 st.write(
@@ -151,7 +151,7 @@ results = hybrid_recommend(All_movies, similarity, cv, vectors,
                      language="Any Language",
                      director="Any Director",
                      movie=None,
-                     top_n=10):
+                     top_n=10)
 # ---------------- BUTTON ----------------
 if st.button("✨ Recommend Movies"):
 

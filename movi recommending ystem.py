@@ -27,7 +27,7 @@ section[data-testid="stSidebar"] {
 .stButton>button {
     background-color: #ff4b4b;
     color: white;
-    border-radius: 10px;
+    border-radius:10 px;
     border: none;
     padding: 0.6rem 1rem;
     font-weight: bold;

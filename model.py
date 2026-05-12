@@ -10,7 +10,7 @@ vectors = cv.fit_transform(All_movies['tags'])
 
 # similarity matrix
 similarity = cosine_similarity(vectors)
-def ml_fallback(All_movies, cv, vectors,
+def ml_fallback(All_movies, vectors,
                 genre="Any Genre",
                 actor="Any Actor",
                 director="Any Director",

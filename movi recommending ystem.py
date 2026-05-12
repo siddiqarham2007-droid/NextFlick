@@ -55,7 +55,7 @@ def load_data():
     return All_movies, similarity
 
 All_movies, similarity = load_data()
-
+from model import hybrid_recommend, ml_fallback
 # ---------------- TITLE ----------------
 st.title("🍿 Mood2Movie")
 st.markdown("### What's on your mind today? 🎬")

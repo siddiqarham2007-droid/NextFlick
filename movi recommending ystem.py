@@ -43,7 +43,6 @@ section[data-testid="stSidebar"] {
 
 </style>
 """, unsafe_allow_html=True)
-""", unsafe_allow    you have chosen the colour codes all the colours are fine but the sidebar headings (likes language , genres etc )are not visible due to the colour combinations  so change its colou so that it is visible 
 # ---------------- LOAD DATA ----------------
 @st.cache_resource
 def load_data():

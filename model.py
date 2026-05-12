@@ -1,3 +1,12 @@
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# vectorization
+cv = CountVectorizer(max_features=5000, stop_words='english')
+vectors = cv.fit_transform(All_movies['tags'])
+
+# similarity matrix
+similarity = cosine_similarity(vectors)
 def ml_fallback(All_movies, cv, vectors,
                 genre="Any Genre",
                 actor="Any Actor",

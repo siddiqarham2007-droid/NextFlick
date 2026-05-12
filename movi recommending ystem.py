@@ -19,14 +19,38 @@ st.markdown("""
     color: white;
 }
 
+/* Main headings */
 h1, h2, h3, h4 {
     color: white;
 }
 
+/* Sidebar */
 section[data-testid="stSidebar"] {
     background-color: #161a23;
 }
 
+/* Sidebar text labels */
+section[data-testid="stSidebar"] label {
+    color: #f5f5f5 !important;
+    font-weight: 600;
+}
+
+/* Sidebar titles */
+section[data-testid="stSidebar"] .css-1d391kg {
+    color: white;
+}
+
+/* Selectbox text */
+.stSelectbox div[data-baseweb="select"] {
+    color: white;
+}
+
+/* Dropdown selected text */
+.stSelectbox div {
+    color: white;
+}
+
+/* Buttons */
 .stButton>button {
     background-color: #ff4b4b;
     color: white;
@@ -36,6 +60,7 @@ section[data-testid="stSidebar"] {
     font-weight: bold;
 }
 
+/* Button hover */
 .stButton>button:hover {
     background-color: #ff2e2e;
     color: white;
@@ -43,7 +68,6 @@ section[data-testid="stSidebar"] {
 
 </style>
 """, unsafe_allow_html=True)
-
 # ---------------- LOAD DATA ----------------
 @st.cache_resource
 def load_data():

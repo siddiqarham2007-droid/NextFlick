@@ -1,6 +1,9 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
+
+cv = pickle.load(open("cv.pkl", "rb"))
+
 # vectorization
 cv = CountVectorizer(max_features=5000, stop_words='english')
 vectors = cv.fit_transform(All_movies['tags'])

@@ -11,7 +11,10 @@ st.set_page_config(
 )
 
 # ---------------- DARK THEME CSS ----------------
-stApp {
+st.markdown("""
+<style>
+
+.stApp {
     background-color: #0f1117;
     color: white;
 }
@@ -27,7 +30,7 @@ section[data-testid="stSidebar"] {
 .stButton>button {
     background-color: #ff4b4b;
     color: white;
-    border-radius:10 px;
+    border-radius: 10px;
     border: none;
     padding: 0.6rem 1rem;
     font-weight: bold;
@@ -39,6 +42,7 @@ section[data-testid="stSidebar"] {
 }
 
 </style>
+""", unsafe_allow_html=True)
 """, unsafe_allow    you have chosen the colour codes all the colours are fine but the sidebar headings (likes language , genres etc )are not visible due to the colour combinations  so change its colou so that it is visible 
 # ---------------- LOAD DATA ----------------
 @st.cache_resource

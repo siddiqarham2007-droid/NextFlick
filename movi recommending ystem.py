@@ -157,6 +157,7 @@ if st.button("✨ Recommend Movies"):
                      director="Any Director",
                      movie=None,
                      top_n=10)
+        st.write(recommendations)
 
     if len(recommendations) == 0:
 

@@ -144,19 +144,19 @@ with st.sidebar.expander("⚡ Advanced Features"):
     )
 
 # ---------------- RECOMMEND FUNCTION ----------------
-results = hybrid_recommend(All_movies, similarity,vectors,
+
+# ---------------- BUTTON ----------------
+if st.button("✨ Recommend Movies"):
+
+    with st.spinner("Finding movies for your mood 🍿..."):
+
+        recommendations = hybrid_recommend(All_movies, similarity,vectors,
                      genre="Any Genre",
                      actor="Any Actor",
                      language="Any Language",
                      director="Any Director",
                      movie=None,
                      top_n=10)
-# ---------------- BUTTON ----------------
-if st.button("✨ Recommend Movies"):
-
-    with st.spinner("Finding movies for your mood 🍿..."):
-
-        recommendations = results
 
     if len(recommendations) == 0:
 

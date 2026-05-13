@@ -42,7 +42,7 @@ def ml_fallback(All_movies, vectors,cv,
         reverse=Trues
     )
 
-    return  All_movies.iloc[[i[0] for i in movies_list[:top_n]]
+    return  All_movies.iloc[[i[0] for i in movies_list[:top_n]]]
 
 
 

@@ -52,9 +52,9 @@ def load_data():
 
     similarity = cosine_similarity(vectors)
 
-    return All_movies, similarity
+    return All_movies, similarity,vectors
 
-All_movies, similarity = load_data()
+All_movies, similarity,vectors = load_data()
 from model import hybrid_recommend, ml_fallback
 # ---------------- TITLE ----------------
 st.title("🍿 Mood2Movie")

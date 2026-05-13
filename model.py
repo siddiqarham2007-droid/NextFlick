@@ -1,15 +1,6 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-
-cv = pickle.load(open("cv.pkl", "rb"))
-
-# vectorization
-cv = CountVectorizer(max_features=5000, stop_words='english')
-vectors = cv.fit_transform(All_movies['tags'])
-
-# similarity matrix
-similarity = cosine_similarity(vectors)
 def ml_fallback(All_movies, vectors,
                 genre="Any Genre",
                 actor="Any Actor",
@@ -62,7 +53,13 @@ def hybrid_recommend(All_movies, similarity, cv, vectors,
                      top_n=10):
 
     filtered = All_movies.copy()
+    # vectorization
+    cv = CountVectorizer(max_features=5000, stop_words='english')
+    vectors = cv.fit_transform(All_movies['tags'])
 
+    # similarity matrix
+    similarity = cosine_similarity(vectors)
+                       
     # 🔹 FILTERS
     if genre != "Any Genre":
         g = genre.replace(" ", "").lower()

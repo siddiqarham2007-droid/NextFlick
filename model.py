@@ -42,7 +42,7 @@ def ml_fallback(All_movies, vectors,cv,
         reverse=Trues
     )
 
-    return [All_movies.iloc[i[0]].title for i in movies_list[:top_n]]
+    return  All_movies.iloc[[i[0] for i in movies_list[:top_n]]
 
 
 
@@ -115,7 +115,7 @@ def hybrid_recommend(All_movies, similarity, vectors,
             ascending=False
         )
 
-        return final_df['title'].head(top_n).tolist()
+        return final_df.head(top_n)
 
     # 🔥 CASE 2: No results → ML fallback
     else:

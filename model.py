@@ -55,6 +55,8 @@ def hybrid_recommend(All_movies, similarity, vectors,
                      top_n=10):
 
     filtered = All_movies.copy()
+    vectors = pickle.load(open("vectors2.pkl", "rb"))
+
     # 🔹 FILTERS
     if genre != "Any Genre":
         g = genre.replace(" ", "").lower()

@@ -144,7 +144,7 @@ with st.sidebar.expander("⚡ Advanced Features"):
     )
 
 # ---------------- RECOMMEND FUNCTION ----------------
-results = hybrid_recommend(All_movies, similarity, cv, vectors,
+results = hybrid_recommend(All_movies, similarity,vectors,
                      genre="Any Genre",
                      actor="Any Actor",
                      language="Any Language",

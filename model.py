@@ -1,11 +1,13 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 
-def ml_fallback(All_movies, vectors,
+def ml_fallback(All_movies, vectors,cv,
                 genre="Any Genre",
                 actor="Any Actor",
                 director="Any Director",
                 top_n=10):
+
+    cv = CountVectorizer(max_features=5000, stop_words='english')
 
     query = ""
 
@@ -44,7 +46,7 @@ def ml_fallback(All_movies, vectors,
 
 
 
-def hybrid_recommend(All_movies, similarity, cv, vectors,
+def hybrid_recommend(All_movies, similarity, vectors,
                      genre="Any Genre",
                      actor="Any Actor",
                      language="Any Language",
@@ -53,13 +55,6 @@ def hybrid_recommend(All_movies, similarity, cv, vectors,
                      top_n=10):
 
     filtered = All_movies.copy()
-    # vectorization
-    cv = CountVectorizer(max_features=5000, stop_words='english')
-    vectors = cv.fit_transform(All_movies['tags'])
-
-    # similarity matrix
-    similarity = cosine_similarity(vectors)
-                       
     # 🔹 FILTERS
     if genre != "Any Genre":
         g = genre.replace(" ", "").lower()
@@ -123,8 +118,6 @@ def hybrid_recommend(All_movies, similarity, cv, vectors,
     # 🔥 CASE 2: No results → ML fallback
     else:
         return ml_fallback(All_movies, cv, vectors, genre, actor, director, top_n)
-
-
 
 def recommend(genre, actor="Any Actor", director="Any Director", language=None):
     

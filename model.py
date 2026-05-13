@@ -157,4 +157,4 @@ def recommend(genre, actor="Any Actor", director="Any Director", language=None):
         ascending=False
     )
 
-    return filtered['title'].head(10)
+    return filtered.head(10)

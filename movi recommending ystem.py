@@ -156,7 +156,7 @@ if st.button("✨ Recommend Movies"):
 
     with st.spinner("Finding movies for your mood 🍿..."):
 
-        recommendations = recommend_movies()
+        recommendations = results
 
     if len(recommendations) == 0:
 

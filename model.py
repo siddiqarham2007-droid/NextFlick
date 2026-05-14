@@ -56,7 +56,6 @@ def hybrid_recommend(All_movies, similarity, vectors,
 
     filtered = All_movies.copy()
 
-
     # 🔹 FILTERS
     if genre != "Any Genre":
         g = genre.replace(" ", "").lower()
@@ -76,7 +75,8 @@ def hybrid_recommend(All_movies, similarity, vectors,
 
     if language != "Any Language":
         filtered = filtered[
-            filtered['original_language'].str.lower() == language.lower()
+            filtered['original_language'].str.lower()
+            == language.lower()
         ]
 
     if director != "Any Director":
@@ -92,7 +92,10 @@ def hybrid_recommend(All_movies, similarity, vectors,
 
         # choose reference movie
         if movie and movie.lower() in All_movies['title'].str.lower().values:
-            ref_index = All_movies[All_movies['title'].str.lower() == movie.lower()].index[0]
+            ref_index = All_movies[
+                All_movies['title'].str.lower() == movie.lower()
+            ].index[0]
+
         else:
             ref_index = filtered.sort_values(
                 by=['vote_average','popularity'],
@@ -105,19 +108,21 @@ def hybrid_recommend(All_movies, similarity, vectors,
         filtered_indices = filtered.index.tolist()
 
         sim_filtered = [i for i in sim_list if i[0] in filtered_indices]
-        sim_filtered = sorted(sim_filtered, key=lambda x: x[1], reverse=True)
+
+        sim_filtered = sorted(
+            sim_filtered,
+            key=lambda x: x[1],
+            reverse=True
+        )
 
         final_indices = [i[0] for i in sim_filtered]
+
         final_df = All_movies.iloc[final_indices]
 
-        final_df = final_df.sort_values(
-            by=['vote_average','popularity'],
-            ascending=False
-        )
+        # 🚨 ONLY CHANGE: removed rating-based sorting
 
         return final_df.head(top_n)
 
     # 🔥 CASE 2: No results → ML fallback
     else:
-        return ml_fallback(All_movies, cv, vectors, genre, actor, director, top_n)
-
+        return ml_fallback(All_movies, vectors, genre, actor, director, top_n)

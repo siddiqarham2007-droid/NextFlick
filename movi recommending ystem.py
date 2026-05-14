@@ -161,7 +161,7 @@ if st.button("✨ Recommend Movies"):
         st.write("Actor:", selected_actor)
         st.write("Language:", selected_language)
         st.write("Director:", selected_director)
-        st.write(final_df[['title']].head(20))
+       
 
     if len(recommendations) == 0:
 

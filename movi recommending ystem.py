@@ -157,7 +157,10 @@ if st.button("✨ Recommend Movies"):
                      director="Any Director",
                      movie=None,
                      top_n=10)
-        st.write(recommendations)
+        st.write("Genre:", selected_genre)
+        st.write("Actor:", selected_actor)
+        st.write("Language:", selected_language)
+        st.write("Director:", selected_director)
 
     if len(recommendations) == 0:
 

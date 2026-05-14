@@ -97,10 +97,7 @@ def hybrid_recommend(All_movies, similarity, vectors,
             ].index[0]
 
         else:
-            ref_index = filtered.sort_values(
-                by=['vote_average','popularity'],
-                ascending=False
-            ).index[0]
+            ref_index = filtered.index[0]
 
         distances = similarity[ref_index]
 

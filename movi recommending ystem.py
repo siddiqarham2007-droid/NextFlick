@@ -106,7 +106,7 @@ language_map = {
 
 selected_language = st.sidebar.selectbox(
     "🌍 Language",
-    list(language_map.values())
+    list(language_map.keys())
 )
 
 # ACTOR

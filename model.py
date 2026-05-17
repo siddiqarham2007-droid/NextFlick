@@ -1,6 +1,6 @@
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
-from movie_recommendation_system.py import load_data
+from movie_recommendation_system import load_data
 
 def ml_fallback(All_movies, vectors,cv,
                 genre="Any Genre",

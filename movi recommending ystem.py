@@ -161,12 +161,8 @@ if st.button("✨ Recommend Movies"):
         st.write("Actor:", selected_actor)
         st.write("Language:", selected_language)
         st.write("Director:", selected_director)
-        st.write(All_movies['genres'].iloc[0])
-        st.write(type(All_movies['genres'].iloc[0]))
-
-        st.write(All_movies['cast'].iloc[0])
-        st.write(type(All_movies['cast'].iloc[0]))
-       
+     
+        
 
     if len(recommendations) == 0:
 

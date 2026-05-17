@@ -3,6 +3,7 @@ import pickle
 import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from model import hybrid_recommend, ml_fallback
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="Mood2Movie🎬",
@@ -55,7 +56,7 @@ def load_data():
     return All_movies, similarity,vectors
 
 All_movies, similarity,vectors = load_data()
-from model import hybrid_recommend, ml_fallback
+
 # ---------------- TITLE ----------------
 st.title("🍿 Mood2Movie")
 st.markdown("### What's on your mind today? 🎬")

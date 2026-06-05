@@ -4,6 +4,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 from model import hybrid_recommend, ml_fallback
+
 # ---------------- PAGE CONFIG ----------------
 st.set_page_config(
     page_title="Mood2Movie🎬",
@@ -44,18 +45,20 @@ section[data-testid="stSidebar"] {
 
 </style>
 """, unsafe_allow_html=True)
+
+
 # ---------------- LOAD DATA ----------------
 @st.cache_resource
 def load_data():
-
     All_movies = pickle.load(open("movies.pkl", "rb"))
     vectors = pickle.load(open("vectors2.pkl", "rb"))
 
     similarity = cosine_similarity(vectors)
 
-    return All_movies, similarity,vectors
+    return All_movies, similarity, vectors
 
-All_movies, similarity,vectors = load_data()
+
+All_movies, similarity, vectors = load_data()
 
 # ---------------- TITLE ----------------
 st.title("🍿 Mood2Movie")
@@ -76,7 +79,7 @@ all_genres = sorted(
         for genre in sublist
     ))
 )
-all_genres.insert(0,'Any Genre')
+all_genres.insert(0, 'Any Genre')
 
 selected_genre = st.sidebar.selectbox(
     "🎬 Genre",
@@ -85,7 +88,7 @@ selected_genre = st.sidebar.selectbox(
 
 # LANGUAGE
 language_map = {
-    'Any Language':'Any Language',
+    'Any Language': 'Any Language',
     "en": "English",
     "hi": "Hindi",
     "fr": "French",
@@ -104,11 +107,14 @@ language_map = {
     "fa": "Persian"
 }
 
-
-selected_language = st.sidebar.selectbox(
+selected_language_name = st.sidebar.selectbox(
     "🌍 Language",
     list(language_map.values())
 )
+
+selected_language = {
+    value: key for key, value in language_map.items()
+}[selected_language_name]
 
 # ACTOR
 all_actors = sorted(
@@ -128,7 +134,6 @@ selected_actor = st.sidebar.selectbox(
 
 # ---------------- ADVANCED FEATURES ----------------
 with st.sidebar.expander("⚡ Advanced Features"):
-
     all_directors = sorted(
         list(set(
             director
@@ -151,19 +156,21 @@ if st.button("✨ Recommend Movies"):
 
     with st.spinner("Finding movies for your mood 🍿..."):
 
-        recommendations = hybrid_recommend(All_movies, similarity,vectors,
-                     genre="Any Genre",
-                     actor="Any Actor",
-                     language="Any Language",
-                     director="Any Director",
-                     movie=None,
-                     top_n=10)
+        recommendations = hybrid_recommend(
+    All_movies,
+    similarity,
+    vectors,
+    genre=selected_genre,
+    actor=selected_actor,
+    language=selected_language,
+    director=selected_director,
+    movie=None,
+    top_n=10
+)
         st.write("Genre:", selected_genre)
         st.write("Actor:", selected_actor)
         st.write("Language:", selected_language)
         st.write("Director:", selected_director)
-     
-        
 
     if len(recommendations) == 0:
 
@@ -184,10 +191,9 @@ if st.button("✨ Recommend Movies"):
                 poster_path = movie.get('poster_path')
 
                 if pd.notna(poster_path):
-
                     poster_url = (
-                        "https://image.tmdb.org/t/p/w500"
-                        + poster_path
+                            "https://image.tmdb.org/t/p/w500"
+                            + poster_path
                     )
 
                     st.image(
@@ -202,3 +208,4 @@ if st.button("✨ Recommend Movies"):
                 st.caption(
                     f"⭐ {movie['vote_average']}"
                 )
+
